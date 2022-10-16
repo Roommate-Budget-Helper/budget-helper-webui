@@ -12,3 +12,8 @@ FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-${VARIANT}
 
 # [Optional] Uncomment if you want to install more global node packages
 # RUN su node -c "npm install -g <your-package-list -here>"
+# Install tfenv Terraform version manager
+USER node
+RUN git clone https://github.com/tfutils/tfenv.git ~/.tfenv
+RUN echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> ~/.bash_profile
+RUN sudo ln -s ~/.tfenv/bin/* /usr/local/bin

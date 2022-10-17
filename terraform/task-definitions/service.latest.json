@@ -1,0 +1,36 @@
+{
+  "family": "task-definition-node",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": [
+    "EC2"
+  ],
+  "executionRoleArn": "arn:aws:iam::320639944870:role/Policy-Ecs-Execution-Role",
+  "containerDefinitions": [
+    {
+      "name": "nextjs-image",
+      "image": "nginx:latest",
+      "memoryReservation": 512,
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "hostPort": 3000
+        }
+      ],
+      "environment": [
+        {
+          "name": "PORT",
+          "value": "3000"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/aws/ecs/roommate-budget-tracker-prod",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "secrets": []
+    }
+  ]
+}

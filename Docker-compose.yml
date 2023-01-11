@@ -10,6 +10,8 @@ services:
       - '5432:5432'
     volumes:
       - db:/var/lib/postgressql/data
+    extra_hosts: 
+      - "host.docker.internal:host-gateway"
 volumes:
   db:
     driver: local
